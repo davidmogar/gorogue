@@ -1,0 +1,6 @@
+[submodule "gorogue-server"]
+	path = gorogue-server
+	url = https://github.com/davidmogar/gorogue-server
+[submodule "gorogue-module"]
+	path = gorogue-module
+	url = https://github.com/davidmogar/gorogue-module
