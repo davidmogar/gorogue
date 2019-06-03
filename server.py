@@ -4,6 +4,7 @@
 import argparse
 import logging
 import os
+import platform
 import random
 import string
 import subprocess
@@ -28,7 +29,10 @@ args = parser.parse_args()
 
 
 def copy_command_to_clipboard():
-    return subprocess.check_call('echo %s | clip' % PUPPET_SERVER_COMMAND, shell=True) == 0
+    clip_command = 'echo "%s" | %s' % (PUPPET_SERVER_COMMAND,
+                                     'pbcopy' if platform.system() == 'Darwin' else 'clip')
+
+    return subprocess.call(clip_command, shell=True) > 0
 
 
 def generate_docker_command():
@@ -55,7 +59,7 @@ def generate_docker_command():
 
 def run_docker():
     command = generate_docker_command()
-    
+
     try:
         os.system(' '.join(command))
     except Exception as error:
@@ -65,7 +69,7 @@ def run_docker():
 if __name__ == "__main__":
     print("\U0001F991\tRun '%s' in the command line once in" % PUPPET_SERVER_COMMAND)
 
-    if copy_command_to_clipboard():        
+    if copy_command_to_clipboard():
         print('\U0001F4CB\tCommand copied to the clipboard')
     else:
         print('\U0001F926\tCommand not copied to the clipboard')
