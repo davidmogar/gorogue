@@ -34,11 +34,11 @@ def generate_docker_command(hostname):
         'run',
         '--hostname', hostname,
         '--link', args.docker_link,
-        args.docker_image
+        args.docker_image, "agent", "-t"
     ]
 
     if args.no_rm:
-        command.insert(-1, '--rm')
+        command.insert(-3, '--rm')
 
     return command
 
