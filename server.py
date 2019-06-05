@@ -32,7 +32,7 @@ def copy_command_to_clipboard():
     clip_command = 'echo "%s" | %s' % (PUPPET_SERVER_COMMAND,
                                      'pbcopy' if platform.system() == 'Darwin' else 'clip')
 
-    return subprocess.call(clip_command, shell=True) > 0
+    return subprocess.call(clip_command, shell=True) == 0
 
 
 def generate_docker_command():
