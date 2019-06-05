@@ -67,7 +67,7 @@ def run_docker():
 
 
 if __name__ == "__main__":
-    print("\U0001F991\tRun '%s' in the command line once in" % PUPPET_SERVER_COMMAND)
+    print("\U0001F991\tRun '%s'" % PUPPET_SERVER_COMMAND)
 
     if copy_command_to_clipboard():
         print('\U0001F4CB\tCommand copied to the clipboard')
